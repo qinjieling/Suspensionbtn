@@ -1,0 +1,37 @@
+movefun();
+function movefun(e){
+	var wrap=document.getElementsByClassName("section-wrap")[0];
+	var left1,top1,left2,top2;
+	
+	wrap.addEventListener('touchstart',function(e){
+		e.preventDefault();
+			var touch1=e.targetTouches[0];
+			var startX=touch1.pageX;
+			var startY=touch1.pageY;
+			left1=startX;
+			top1=startY;
+			/*console.log("top1:"+top1);*/
+	});
+	
+	wrap.addEventListener('touchend',function(e){
+		e.preventDefault();
+		var moveX=left2-left1;
+		var moveY=parseFloat(top2)-parseFloat(top1);
+		if(moveY>0){
+			prePage();run();	
+		}else{
+			nextPage();run();
+		}
+	});
+	
+	wrap.addEventListener('touchmove',function(e){
+			e.preventDefault();
+				var touch1=e.changedTouches[0];
+				var endX=touch1.pageX;
+			    var endY=touch1.pageY;
+			    left2=endX;
+			    top2=endY;
+			    /*console.log("top2:"+top2);*/
+			e.stopPropagation();
+	});
+ }
